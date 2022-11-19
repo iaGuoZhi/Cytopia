@@ -8,8 +8,12 @@ void Camera::increaseZoomLevel()
   if (!m_canScale)
     return;
 
-  if (m_ZoomLevel < 4.0)
+  if (m_ZoomLevel < 1)
   {
+    m_ZoomLevel *= 2;
+    centerScreenOnPoint(m_CenterIsoCoordinates);
+    MapFunctions::instance().refreshVisibleMap();
+  } else if (m_ZoomLevel < 4.0) {
     m_ZoomLevel += 0.5;
     centerScreenOnPoint(m_CenterIsoCoordinates);
     MapFunctions::instance().refreshVisibleMap();
@@ -24,6 +28,10 @@ void Camera::decreaseZoomLevel()
   if (m_ZoomLevel > 0.5)
   {
     m_ZoomLevel -= 0.5;
+    centerScreenOnPoint(m_CenterIsoCoordinates);
+    MapFunctions::instance().refreshVisibleMap();
+  } else {
+    m_ZoomLevel /= 2;
     centerScreenOnPoint(m_CenterIsoCoordinates);
     MapFunctions::instance().refreshVisibleMap();
   }

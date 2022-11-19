@@ -17,7 +17,7 @@
   "Game": {
     "Biome": "Showcase",
     "Language": "en",
-    "MapSize": 128,
+    "MapSize": 256,
     "MaxElevationHeight": 32,
     "ShowBuildingsInBlueprint": false,
     "ZoneLayerTransparency": 0.6
@@ -26,8 +26,8 @@
     "FullScreen": false,
     "FullScreenMode": 0,
     "Resolution": {
-      "Screen_Height": 600,
-      "Screen_Width": 800
+      "Screen_Height": 800,
+      "Screen_Width": 1280
     },
     "VSYNC": true
   },

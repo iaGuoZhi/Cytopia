@@ -164,7 +164,7 @@ void EventManager::checkEvents(SDL_Event &event)
       case SDLK_UP:
       case SDLK_w:
         if (MapFunctions::instance().getMap() &&
-            Camera::instance().cameraOffset().y > -2 * Settings::instance().screenHeight * Camera::instance().zoomLevel())
+            Camera::instance().cameraOffset().y > -3 * Settings::instance().screenHeight * Camera::instance().zoomLevel())
         {
           Camera::instance().moveCamera(0, Settings::instance().screenHeight / 16);
         }
@@ -172,7 +172,7 @@ void EventManager::checkEvents(SDL_Event &event)
       case SDLK_LEFT:
       case SDLK_a:
         if (MapFunctions::instance().getMap() &&
-            Camera::instance().cameraOffset().x > -0.25 * Settings::instance().screenWidth * Camera::instance().zoomLevel())
+            Camera::instance().cameraOffset().x > -0.5 * Settings::instance().screenWidth * Camera::instance().zoomLevel())
         {
           Camera::instance().moveCamera(Settings::instance().screenWidth / 16, 0);
         }
@@ -180,7 +180,7 @@ void EventManager::checkEvents(SDL_Event &event)
       case SDLK_DOWN:
       case SDLK_s:
         if (MapFunctions::instance().getMap() &&
-            Camera::instance().cameraOffset().y < 1.25 * Settings::instance().screenHeight * Camera::instance().zoomLevel())
+            Camera::instance().cameraOffset().y < 1.5 * Settings::instance().screenHeight * Camera::instance().zoomLevel())
         {
           Camera::instance().moveCamera(0, -Settings::instance().screenHeight / 16);
         }
@@ -188,7 +188,7 @@ void EventManager::checkEvents(SDL_Event &event)
       case SDLK_RIGHT:
       case SDLK_d:
         if (MapFunctions::instance().getMap() &&
-            Camera::instance().cameraOffset().x < 5 * Settings::instance().screenWidth * Camera::instance().zoomLevel())
+            Camera::instance().cameraOffset().x < 6 * Settings::instance().screenWidth * Camera::instance().zoomLevel())
         {
           // check if map exists to see, if we're ingame already.
           if (MapFunctions::instance().getMap())
@@ -197,7 +197,12 @@ void EventManager::checkEvents(SDL_Event &event)
           }
         }
         break;
-
+      case SDLK_EQUALS:
+        Camera::instance().changeZoomLevel(true);
+        break;
+      case SDLK_MINUS:
+        Camera::instance().changeZoomLevel(false);
+        break;
       default:
         break;
       }
@@ -538,7 +543,6 @@ void EventManager::checkEvents(SDL_Event &event)
     case SDL_MOUSEWHEEL:
       Camera::instance().changeZoomLevel(event.wheel.y > 0);
       break;
-
     default:
       break;
     }
